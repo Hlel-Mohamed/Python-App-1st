@@ -70,9 +70,38 @@ class Caesar(Frame):
 
 
         def encrypt():
-            result = Label(self, text=text.get(), bg="#ccc", width=20,height=2).place(x=100,y=270)
+            x=text.get()
+            test=False
+            for i in range(len(x)):
+                if (ord(x[i])<65 or ord(x[i])>90):
+                    test=False
+                    error = Label(self,text='Plain text needs to be uppercase, Re enter: ').pack()
+                    #error.after(1000, error.destroy())
+            y=key.get()
+            z=''
+            for i in range(len(x)):
+                res=ord(x[i])-64+int(y)
+                while res>26:
+                    res=res-26
+                z=z+chr(res+64)
+            result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
         def decrypt():
-            result = Label(self, text=text.get(), bg="#ccc", width=20,height=2).place(x=100,y=270)
+            x=text.get()
+            test=False
+            while test==False:
+                test=True
+                for i in range(len(x)):
+                    if (ord(x[i])<65 or ord(x[i])>90):
+                        test=False
+                        
+            y=key.get()
+            z=''
+            for i in range(len(x)):
+                res=ord(x[i])-int(y)
+                while res<65:
+                    res=res+26
+                z=z+chr(res)
+            result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
 
 
         enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="#b0b0b0", fg="black")
