@@ -54,7 +54,7 @@ class Caesar(Frame):
         label = Label(self, text="Caesar", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
         
-        esc = Button(self, text="Back",command=lambda: controller.show_frame("Home")).place(x=0,y=0)
+        Button(self, text="Back",command=lambda: controller.show_frame("Home")).place(x=0,y=0)
         Label(self, text="Text").place(x=60,y=100)
         text = Entry(self, width=30)
         text.place(x=110,y=100)
@@ -62,7 +62,7 @@ class Caesar(Frame):
         key = Entry(self, width=30)
         key.place(x=110,y=150)
 
-        result = Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
+        Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
 
 
         def encrypt():
@@ -86,7 +86,7 @@ class Viginere(Frame):
         label = Label(self, text="Viginere", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
 
-        esc = Button(self, text="Back",command=lambda: controller.show_frame("Home")).place(x=0,y=0)
+        Button(self, text="Back",command=lambda: controller.show_frame("Home")).place(x=0,y=0)
 
         Label(self, text="Text").place(x=60,y=100)
         text = Entry(self, width=30)
@@ -95,7 +95,7 @@ class Viginere(Frame):
         key = Entry(self, width=30)
         key.place(x=110,y=150)
 
-        result = Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
+        Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
 
 
         def encrypt():
@@ -116,8 +116,8 @@ class Hill(Frame):
         label = Label(self, text="Hill", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
 
-        esc = Button(self, text="Back",command=lambda: controller.show_frame("Home")).place(x=0,y=0)
-        
+        Button(self, text="Back",command=lambda: controller.show_frame("Home")).place(x=0,y=0)
+
         Label(self, text="Text").place(x=60,y=100)
         text = Entry(self, width=30)
         text.place(x=110,y=100)
@@ -125,7 +125,7 @@ class Hill(Frame):
         key = Entry(self, width=30)
         key.place(x=110,y=150)
 
-        result = Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
+        Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
 
 
         def encrypt():
