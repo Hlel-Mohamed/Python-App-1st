@@ -35,7 +35,9 @@ class Home(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
-        label = Label(self, text="Cryptography", font=controller.title_font)
+        self.configure(background="#5896ed")
+
+        label = Label(self, text="Cryptography", font=controller.title_font, bg="#5896ed")
         label.pack(side="top", fill="x", pady=10)
 
         caes_but = Button(self, text="Caesar",command=lambda: controller.show_frame("Caesar"),width=20, pady=10)
@@ -51,14 +53,16 @@ class Caesar(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
-        label = Label(self, text="Caesar", font=controller.title_font)
+        self.configure(background="#5896ed")
+
+        label = Label(self, text="Caesar", font=controller.title_font, bg="#5896ed")
         label.pack(side="top", fill="x", pady=10)
         
         Button(self, text="Back",command=lambda: controller.show_frame("Home")).place(x=0,y=0)
-        Label(self, text="Text").place(x=60,y=100)
+        Label(self, text="Text", bg="#5896ed").place(x=60,y=100)
         text = Entry(self, width=30)
         text.place(x=110,y=100)
-        Label(self, text="Key").place(x=60,y=150)
+        Label(self, text="Key", bg="#5896ed").place(x=60,y=150)
         key = Entry(self, width=30)
         key.place(x=110,y=150)
 
@@ -71,9 +75,9 @@ class Caesar(Frame):
             result = Label(self, text=text.get(), bg="#ccc", width=20,height=2).place(x=100,y=270)
 
 
-        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="grey", fg="#fff")
+        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="#b0b0b0", fg="black")
         enc_but.place(x=30,y=200)
-        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=decrypt, bg="grey", fg="#fff")
+        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=decrypt, bg="#b0b0b0", fg="black")
         dec_but.place(x=180,y=200)
 
 
@@ -83,15 +87,17 @@ class Viginere(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
-        label = Label(self, text="Viginere", font=controller.title_font)
+        self.configure(background="#5896ed")
+
+        label = Label(self, text="Viginere", font=controller.title_font, bg="#5896ed")
         label.pack(side="top", fill="x", pady=10)
 
         Button(self, text="Back",command=lambda: controller.show_frame("Home")).place(x=0,y=0)
 
-        Label(self, text="Text").place(x=60,y=100)
+        Label(self, text="Text", bg="#5896ed").place(x=60,y=100)
         text = Entry(self, width=30)
         text.place(x=110,y=100)
-        Label(self, text="Key").place(x=60,y=150)
+        Label(self, text="Key", bg="#5896ed").place(x=60,y=150)
         key = Entry(self, width=30)
         key.place(x=110,y=150)
 
@@ -104,24 +110,26 @@ class Viginere(Frame):
             result = Label(self, text=text.get(), bg="#ccc", width=20,height=2).place(x=100,y=270)
 
 
-        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="grey", fg="#fff")
+        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="#b0b0b0", fg="black")
         enc_but.place(x=30,y=200)
-        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=decrypt, bg="grey", fg="#fff")
+        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=decrypt, bg="#b0b0b0", fg="black")
         dec_but.place(x=180,y=200)
 
 class Hill(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
-        label = Label(self, text="Hill", font=controller.title_font)
+        self.configure(background="#5896ed")
+
+        label = Label(self, text="Hill", font=controller.title_font, bg="#5896ed")
         label.pack(side="top", fill="x", pady=10)
 
         Button(self, text="Back",command=lambda: controller.show_frame("Home")).place(x=0,y=0)
 
-        Label(self, text="Text").place(x=60,y=100)
+        Label(self, text="Text", bg="#5896ed").place(x=60,y=100)
         text = Entry(self, width=30)
         text.place(x=110,y=100)
-        Label(self, text="Key").place(x=60,y=150)
+        Label(self, text="Key", bg="#5896ed").place(x=60,y=150)
         key = Entry(self, width=30)
         key.place(x=110,y=150)
 
@@ -134,10 +142,12 @@ class Hill(Frame):
             result = Label(self, text=text.get(), bg="#ccc", width=20,height=2).place(x=100,y=270)
 
 
-        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="grey", fg="#fff")
+        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="#b0b0b0", fg="black")
         enc_but.place(x=30,y=200)
-        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=decrypt, bg="grey", fg="#fff")
+        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=decrypt, bg="#b0b0b0", fg="black")
         dec_but.place(x=180,y=200)
+
+
 app = root()
 app.geometry("350x350")
 app.resizable(False, False)
