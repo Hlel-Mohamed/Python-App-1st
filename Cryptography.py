@@ -1,6 +1,6 @@
-
 from tkinter import *
 from tkinter import font
+from sys import exit
 
 
 class root(Tk):
@@ -46,6 +46,8 @@ class Home(Frame):
         caes_but.place(x=100,y=100)
         vig_but.place(x=100,y=150)
         hill_but.place(x=100,y=200)
+        Button(self, text="Exit",command=exit).place(x=0,y=0)
+
 
 
 class Caesar(Frame):
@@ -71,37 +73,54 @@ class Caesar(Frame):
 
         def encrypt():
             x=text.get()
-            test=False
+            y=key.get()
+            test_text=True
+            test_key=str.isnumeric(y)
             for i in range(len(x)):
                 if (ord(x[i])<65 or ord(x[i])>90):
-                    test=False
-                    error = Label(self,text='Plain text needs to be uppercase, Re enter: ').pack()
-                    #error.after(1000, error.destroy())
-            y=key.get()
-            z=''
-            for i in range(len(x)):
-                res=ord(x[i])-64+int(y)
-                while res>26:
-                    res=res-26
-                z=z+chr(res+64)
-            result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
+                    test_text=False
+            if test_text == False:
+                error = Label(self,text='Plain text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.pack()
+                self.after(2000, error.destroy)
+            elif test_key == False:
+                error = Label(self,text='Encryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.pack()
+                self.after(2000, error.destroy)
+            else:
+                z=''
+                for i in range(len(x)):
+                    res=ord(x[i])-64+int(y)
+                    while res>26:
+                        res=res-26
+                    z=z+chr(res+64)
+                result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
+            
+
         def decrypt():
             x=text.get()
-            test=False
-            while test==False:
-                test=True
-                for i in range(len(x)):
-                    if (ord(x[i])<65 or ord(x[i])>90):
-                        test=False
-                        
             y=key.get()
-            z=''
+            test_text=True
+            test_key=str.isnumeric(y)
             for i in range(len(x)):
-                res=ord(x[i])-int(y)
-                while res<65:
-                    res=res+26
-                z=z+chr(res)
-            result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
+                if (ord(x[i])<65 or ord(x[i])>90):
+                    test_text=False
+            if test_text == False:
+                error = Label(self,text='Encrypted text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.pack()
+                self.after(2000, error.destroy)
+            elif test_key == False:
+                error = Label(self,text='Decryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.pack()
+                self.after(2000, error.destroy)
+            else:
+                z=''
+                for i in range(len(x)):
+                    res=ord(x[i])-int(y)
+                    while res<65:
+                        res=res+26
+                    z=z+chr(res)
+                result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
 
 
         enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="#b0b0b0", fg="black")
@@ -134,9 +153,65 @@ class Viginere(Frame):
 
 
         def encrypt():
-            result = Label(self, text=text.get(), bg="#ccc", width=20,height=2).place(x=100,y=270)
+            x=text.get()
+            y=key.get()
+            test_text=True
+            test_key=True
+            for i in range(len(x)):
+                if (ord(x[i])<65 or ord(x[i])>90):
+                    test_text=False
+            for i in range(len(y)):
+                if (ord(y[i])<65 or ord(y[i])>90):
+                    test_key=False
+            if test_text == False:
+                error = Label(self,text='Plain text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.pack()
+                self.after(2000, error.destroy)
+            elif test_key == False:
+                error = Label(self,text='Encryption key needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.pack()
+                self.after(2000, error.destroy)
+            else:
+                z=''
+                for i in range(len(x)):
+                    aux1=ord(x[i])-64
+                    aux2=ord(y[i])-64
+                    res=aux1+aux2
+                    while res>26:
+                        res=res-26
+                    z=z+chr(res+64)
+                result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
+            
+
         def decrypt():
-            result = Label(self, text=text.get(), bg="#ccc", width=20,height=2).place(x=100,y=270)
+            x=text.get()
+            y=key.get()
+            test_text=True
+            test_key=True
+            for i in range(len(x)):
+                if (ord(x[i])<65 or ord(x[i])>90):
+                    test_text=False
+            for i in range(len(y)):
+                if (ord(y[i])<65 or ord(y[i])>90):
+                    test_key=False
+            if test_text == False:
+                error = Label(self,text='Encrypted text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.pack()
+                self.after(2000, error.destroy)
+            elif test_key == False:
+                error = Label(self,text='Decreption key needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.pack()
+                self.after(2000, error.destroy)
+            else:
+                z=''
+                for i in range(len(x)):
+                    aux1=ord(x[i])
+                    aux2=ord(y[i])-64
+                    res=aux1-aux2
+                    while res<65:
+                        res=res+26
+                    z=z+chr(res)
+                result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
 
 
         enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="#b0b0b0", fg="black")
