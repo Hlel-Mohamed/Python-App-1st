@@ -72,20 +72,12 @@ class Caesar(Frame):
 
 
         def encrypt():
-            x=text.get()
+            x=text.get().upper()
             y=key.get()
-            test_text=True
             test_key=str.isnumeric(y)
-            for i in range(len(x)):
-                if (ord(x[i])<65 or ord(x[i])>90):
-                    test_text=False
-            if test_text == False:
-                error = Label(self,text='Plain text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.pack()
-                self.after(2000, error.destroy)
-            elif test_key == False:
+            if test_key == False:
                 error = Label(self,text='Encryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.pack()
+                error.place(x=45,y=60)
                 self.after(2000, error.destroy)
             else:
                 z=''
@@ -98,20 +90,12 @@ class Caesar(Frame):
             
 
         def decrypt():
-            x=text.get()
+            x=text.get().upper()
             y=key.get()
-            test_text=True
             test_key=str.isnumeric(y)
-            for i in range(len(x)):
-                if (ord(x[i])<65 or ord(x[i])>90):
-                    test_text=False
-            if test_text == False:
-                error = Label(self,text='Encrypted text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.pack()
-                self.after(2000, error.destroy)
-            elif test_key == False:
+            if test_key == False:
                 error = Label(self,text='Decryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.pack()
+                error.place(x=45,y=60)
                 self.after(2000, error.destroy)
             else:
                 z=''
@@ -163,13 +147,13 @@ class Viginere(Frame):
             for i in range(len(y)):
                 if (ord(y[i])<65 or ord(y[i])>90):
                     test_key=False
-            if test_text == False:
+            if test_text == False or x=="":
                 error = Label(self,text='Plain text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.pack()
+                error.place(x=25,y=60)
                 self.after(2000, error.destroy)
             elif test_key == False:
-                error = Label(self,text='Encryption key needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.pack()
+                error = Label(self,text='Encryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.place(x=45,y=60)
                 self.after(2000, error.destroy)
             else:
                 z=''
@@ -194,13 +178,13 @@ class Viginere(Frame):
             for i in range(len(y)):
                 if (ord(y[i])<65 or ord(y[i])>90):
                     test_key=False
-            if test_text == False:
+            if test_text == False or x=="":
                 error = Label(self,text='Encrypted text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.pack()
+                error.place(x=10,y=60)
                 self.after(2000, error.destroy)
             elif test_key == False:
-                error = Label(self,text='Decreption key needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.pack()
+                error = Label(self,text='Decryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+                error.place(x=45,y=60)
                 self.after(2000, error.destroy)
             else:
                 z=''
