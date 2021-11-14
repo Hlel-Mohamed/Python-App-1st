@@ -50,20 +50,28 @@ def hill_encrypt():
     print(enc_msg)
 
 
+
+def adjugate(c):
+    adju = c
+    adju[0][0], adju[1][1] = adju[1, 1], adju[0, 0]
+    adju[0][1] *= -1
+    adju[1][0] *= -1
+    adju %=26
+    return adju
+
+def multDet(key_mat,determinant):
+    return adjugate(key_mat)*inversible(determinant)%26
+
 cipher = input("Input 4 letter cipher: ")
 key_mat=keyToMat(cipher)
+
 determinant = 0
 determinant = key_mat[0][0]*key_mat[1][1]-key_mat[0][1]*key_mat[1][0]
 determinant %= 26
+
 print(inversible(determinant))
+print(key_mat)
+print(multDet(key_mat,determinant))
 
 msg_mat=msgToMat(msg)
-
 #hill_encrypt()
-
-
-
-
-
-
-

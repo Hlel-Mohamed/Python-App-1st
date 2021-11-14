@@ -27,3 +27,14 @@ def inversible(determinant):
         if inverse%26 ==1:
             return i
     return -1
+
+def adjugate(c):
+    adju = c
+    adju[0][0], adju[1][1] = adju[1, 1], adju[0, 0]
+    adju[0][1] *= -1
+    adju[1][0] *= -1
+    adju %=26
+    return adju
+
+def multDet(key_mat,determinant):
+    return adjugate(key_mat)*inversible(determinant)%26

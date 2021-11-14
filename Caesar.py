@@ -1,5 +1,5 @@
 from tkinter import Label
-from alphab import *
+from genMeth import *
 
 def cae_encrypt(text,key,self):
     x=text.get().upper()

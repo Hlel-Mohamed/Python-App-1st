@@ -1,5 +1,5 @@
 from tkinter import Label
-from alphab import *
+from genMeth import *
 
 def vig_encrypt(text,key,self):
     x=text.get().upper()
