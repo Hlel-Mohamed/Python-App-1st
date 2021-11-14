@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import font
 from sys import exit
-
+from Caesar import *
+from Viginere import *
 
 class root(Tk):
 
@@ -70,46 +71,9 @@ class Caesar(Frame):
 
         Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
 
-
-        def encrypt():
-            x=text.get().upper()
-            y=key.get()
-            test_key=str.isnumeric(y)
-            if test_key == False:
-                error = Label(self,text='Encryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.place(x=45,y=60)
-                self.after(2000, error.destroy)
-            else:
-                z=''
-                for i in range(len(x)):
-                    res=ord(x[i])-64+int(y)
-                    while res>26:
-                        res=res-26
-                    z=z+chr(res+64)
-                result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
-            
-
-        def decrypt():
-            x=text.get().upper()
-            y=key.get()
-            test_key=str.isnumeric(y)
-            if test_key == False:
-                error = Label(self,text='Decryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.place(x=45,y=60)
-                self.after(2000, error.destroy)
-            else:
-                z=''
-                for i in range(len(x)):
-                    res=ord(x[i])-int(y)
-                    while res<65:
-                        res=res+26
-                    z=z+chr(res)
-                result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
-
-
-        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="#b0b0b0", fg="black")
+        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=lambda: cae_encrypt(text,key,self), bg="#b0b0b0", fg="black")
         enc_but.place(x=30,y=200)
-        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=decrypt, bg="#b0b0b0", fg="black")
+        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=lambda: cae_decrypt(text,key,self), bg="#b0b0b0", fg="black")
         dec_but.place(x=180,y=200)
 
 
@@ -135,72 +99,9 @@ class Viginere(Frame):
 
         Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
 
-
-        def encrypt():
-            x=text.get()
-            y=key.get()
-            test_text=True
-            test_key=True
-            for i in range(len(x)):
-                if (ord(x[i])<65 or ord(x[i])>90):
-                    test_text=False
-            for i in range(len(y)):
-                if (ord(y[i])<65 or ord(y[i])>90):
-                    test_key=False
-            if test_text == False or x=="":
-                error = Label(self,text='Plain text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.place(x=25,y=60)
-                self.after(2000, error.destroy)
-            elif test_key == False:
-                error = Label(self,text='Encryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.place(x=45,y=60)
-                self.after(2000, error.destroy)
-            else:
-                z=''
-                for i in range(len(x)):
-                    aux1=ord(x[i])-64
-                    aux2=ord(y[i])-64
-                    res=aux1+aux2
-                    while res>26:
-                        res=res-26
-                    z=z+chr(res+64)
-                result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
-            
-
-        def decrypt():
-            x=text.get()
-            y=key.get()
-            test_text=True
-            test_key=True
-            for i in range(len(x)):
-                if (ord(x[i])<65 or ord(x[i])>90):
-                    test_text=False
-            for i in range(len(y)):
-                if (ord(y[i])<65 or ord(y[i])>90):
-                    test_key=False
-            if test_text == False or x=="":
-                error = Label(self,text='Encrypted text needs to be alphabetical uppercase, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.place(x=10,y=60)
-                self.after(2000, error.destroy)
-            elif test_key == False:
-                error = Label(self,text='Decryption key needs to be numeratical, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
-                error.place(x=45,y=60)
-                self.after(2000, error.destroy)
-            else:
-                z=''
-                for i in range(len(x)):
-                    aux1=ord(x[i])
-                    aux2=ord(y[i])-64
-                    res=aux1-aux2
-                    while res<65:
-                        res=res+26
-                    z=z+chr(res)
-                result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
-
-
-        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="#b0b0b0", fg="black")
+        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=lambda: vig_encrypt(text,key,self), bg="#b0b0b0", fg="black")
         enc_but.place(x=30,y=200)
-        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=decrypt, bg="#b0b0b0", fg="black")
+        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=lambda: vig_decrypt(text,key,self), bg="#b0b0b0", fg="black")
         dec_but.place(x=180,y=200)
 
 class Hill(Frame):
