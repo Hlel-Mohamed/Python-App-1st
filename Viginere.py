@@ -1,16 +1,11 @@
 from tkinter import Label
+from alphab import *
 
 def vig_encrypt(text,key,self):
     x=text.get().upper()
+    test_text=alphabatical(x)
     y=key.get().upper()
-    test_text=False
-    test_key=False
-    for i in range(len(x)):
-        if (ord(x[i])>=65 and ord(x[i])<=90)or(ord(x[i])>=97 or ord(x[i])<=122):
-            test_text=True
-    for i in range(len(y)):
-        if (ord(y[i])>=65 and ord(y[i])<=90)or(ord(y[i])>=97 or ord(y[i])<=122):
-            test_key=True
+    test_key=alphabatical(y)
     if test_text == False or x=="":
         error = Label(self,text='Plain text needs to be alphabetical , Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
         error.place(x=50,y=60)
@@ -35,20 +30,14 @@ def vig_encrypt(text,key,self):
                     res=res-26
                 z=z+chr(res+64)
                 nb+=1
-        result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
+        result = Label(self, text=z, bg="black",fg="white", width=20,height=2).place(x=100,y=270)
     
 
 def vig_decrypt(text,key,self):
     x=text.get().upper()
+    test_text=alphabatical(x)
     y=key.get().upper()
-    test_text=False
-    test_key=False
-    for i in range(len(x)):
-        if (ord(x[i])>=65 and ord(x[i])<=90)or(ord(x[i])>=97 or ord(x[i])<=122):
-            test_text=True
-    for i in range(len(y)):
-        if (ord(y[i])>=65 and ord(y[i])<=90)or(ord(y[i])>=97 or ord(y[i])<=122):
-            test_key=True
+    test_key=alphabatical(y)
     if test_text == False or x=="":
         error = Label(self,text='Encrypted text needs to be alphabetical , Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
         error.place(x=40,y=60)
@@ -73,4 +62,4 @@ def vig_decrypt(text,key,self):
                     res=res+26
                 z+=chr(res)
                 nb+=1
-        result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
+        result = Label(self, text=z, bg="black",fg="white", width=20,height=2).place(x=100,y=270)

@@ -1,4 +1,4 @@
-print('----------Hill Decryption----------')
+print('----------Hill Encryption----------')
 from numpy import zeros
 
 msg = input("Plain text : ")
@@ -28,6 +28,14 @@ def keyToMat(string):
             i+=1
     return m
 
+def inversible(determinant):
+    for i in range(26):
+        inverse = determinant * i
+        if inverse%26 ==1:
+            return i
+    return -1
+
+
 def hill_encrypt():
     enc_msg=""
     for i in range (int((len(msg)/2))):
@@ -44,15 +52,16 @@ def hill_encrypt():
 
 cipher = input("Input 4 letter cipher: ")
 key_mat=keyToMat(cipher)
+determinant = 0
+determinant = key_mat[0][0]*key_mat[1][1]-key_mat[0][1]*key_mat[1][0]
+determinant %= 26
+print(inversible(determinant))
+
 msg_mat=msgToMat(msg)
 
-hill_encrypt()
+#hill_encrypt()
 
 
-determinant = 0
-#determinant = key_mat[0][0]*key_mat[1][1]-key_mat[0][1]*key_mat[1][0]
-
-#determinant %= 26
 
 
 

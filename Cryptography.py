@@ -70,7 +70,7 @@ class Caesar(Frame):
         key = Entry(self, width=30)
         key.place(x=110,y=150)
 
-        Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
+        Label(self, text="Result", bg="black",fg="white", width=20,height=2).place(x=100,y=270)
 
         enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=lambda: cae_encrypt(text,key,self), bg="#b0b0b0", fg="black")
         enc_but.place(x=30,y=200)
@@ -98,7 +98,7 @@ class Viginere(Frame):
         key = Entry(self, width=30)
         key.place(x=110,y=150)
 
-        Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
+        Label(self, text="Result", bg="black",fg="white", width=20,height=2).place(x=100,y=270)
 
         enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=lambda: vig_encrypt(text,key,self), bg="#b0b0b0", fg="black")
         enc_but.place(x=30,y=200)
@@ -123,7 +123,7 @@ class Hill(Frame):
         key = Entry(self, width=30)
         key.place(x=110,y=150)
 
-        Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
+        Label(self, text="Result", bg="black",fg="white", width=20,height=2).place(x=100,y=270)
 
         enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=lambda: hill_encrypt(text,key,self), bg="#b0b0b0", fg="black")
         enc_but.place(x=30,y=200)

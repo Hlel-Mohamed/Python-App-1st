@@ -1,38 +1,13 @@
 from tkinter import Label
-from numpy import zeros
-
-def msgToMat(string):
-    integers = [ord(c.upper())-65 for c in string]
-    length = len(integers)
-    m = zeros((2,int(length/2)))
-    i=0
-    for column in range(int(length/2)):
-        for row in range(2):
-            m[row][column]=integers[i]
-            i+=1
-    return m
-def keyToMat(string):
-    integers = [ord(c.upper())-65 for c in string]
-    length = len(integers)
-    m = zeros((2,int(length/2)))
-    i=0
-    for row in range(int(length/2)):
-        for column in range(2):
-            m[row][column]=integers[i]
-            i+=1
-    return m
+from alphab import *
+from hillMeth import *
 
 def hill_encrypt(text,key,self):
     x=text.get().upper()
+    test_text=alphabatical(x)
     y=key.get().upper()
-    test_text=False
-    test_key=False
-    for i in range(len(x)):
-        if (ord(x[i])>=65 and ord(x[i])<=90)or(ord(x[i])>=97 or ord(x[i])<=122):
-            test_text=True
-    for i in range(len(y)):
-        if (ord(y[i])>=65 and ord(y[i])<=90)or(ord(y[i])>=97 or ord(y[i])<=122):
-            test_key=True
+    test_key=alphabatical(y)
+
     if test_text == False or x=="":
         error = Label(self,text='Plain text needs to be alphabetical , Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
         error.place(x=50,y=60)
@@ -45,33 +20,36 @@ def hill_encrypt(text,key,self):
         space = [i for i in range(len(x)) if x.startswith(" ", i)]
         x=x.replace(" ", "")
         if len(x)%2 != 0:
-            x += "0"
+            x += "o"
         key_mat=keyToMat(y)
         msg_mat=msgToMat(x)
-        z=""
-        for i in range (int((len(x)/2))):
-            row=msg_mat[0][i]*key_mat[0][0]+msg_mat[1][i]*key_mat[0][1]
-            elem=int (row%26 + 65)
-            z+=chr(elem)
-            row=msg_mat[0][i]*key_mat[1][0]+msg_mat[1][i]*key_mat[1][1]
-            elem=int (row%26 + 65)
-            z+=chr(elem)
-        for i in space:
-            z=z[:i] + " " + z[i:]
-        result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
+        determinant = 0
+        determinant = key_mat[0][0]*key_mat[1][1]-key_mat[0][1]*key_mat[1][0]
+        determinant %= 26
+        if(inversible(determinant)!=-1):
+            z=""
+            for i in range (int((len(x)/2))):
+                row=msg_mat[0][i]*key_mat[0][0]+msg_mat[1][i]*key_mat[0][1]
+                elem=int (row%26 + 65)
+                z+=chr(elem)
+                row=msg_mat[0][i]*key_mat[1][0]+msg_mat[1][i]*key_mat[1][1]
+                elem=int (row%26 + 65)
+                z+=chr(elem)
+            for i in space:
+                z=z[:i] + " " + z[i:]
+            result = Label(self, text=z, bg="black",fg="white", width=20,height=2).place(x=100,y=270)
+        else:
+            error = Label(self,text='Uninvertible key, Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
+            error.place(x=100,y=60)
+            self.after(2000, error.destroy)
 
 
 def hill_decrypt(text,key,self):
     x=text.get().upper()
+    test_text=alphabatical(x)
     y=key.get().upper()
-    test_text=False
-    test_key=False
-    for i in range(len(x)):
-        if (ord(x[i])>=65 and ord(x[i])<=90)or(ord(x[i])>=97 or ord(x[i])<=122):
-            test_text=True
-    for i in range(len(y)):
-        if (ord(y[i])>=65 and ord(y[i])<=90)or(ord(y[i])>=97 or ord(y[i])<=122):
-            test_key=True
+    test_key=alphabatical(y)
+
     if test_text == False or x=="":
         error = Label(self,text='Encrypted text needs to be alphabetical , Re enter: ', bg="#5896ed", font=("Times", 10 ,"italic"))
         error.place(x=40,y=60)
@@ -96,4 +74,4 @@ def hill_decrypt(text,key,self):
                     res=res+26
                 z+=chr(res)
                 nb+=1
-        result = Label(self, text=z, bg="#ccc", width=20,height=2).place(x=100,y=270)
+        result = Label(self, text=z, bg="black",fg="white", width=20,height=2).place(x=100,y=270)
