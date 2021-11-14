@@ -3,6 +3,7 @@ from tkinter import font
 from sys import exit
 from Caesar import *
 from Viginere import *
+from Hill import *
 
 class root(Tk):
 
@@ -124,16 +125,9 @@ class Hill(Frame):
 
         Label(self, text="Result", bg="#ccc", width=20,height=2).place(x=100,y=270)
 
-
-        def encrypt():
-            result = Label(self, text=text.get(), bg="#ccc", width=20,height=2).place(x=100,y=270)
-        def decrypt():
-            result = Label(self, text=text.get(), bg="#ccc", width=20,height=2).place(x=100,y=270)
-
-
-        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=encrypt, bg="#b0b0b0", fg="black")
+        enc_but = Button(self, text="Encrypt", padx=50,pady=10, command=lambda: hill_encrypt(text,key,self), bg="#b0b0b0", fg="black")
         enc_but.place(x=30,y=200)
-        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=decrypt, bg="#b0b0b0", fg="black")
+        dec_but = Button(self, text="Decrypt", padx=50,pady=10, command=lambda: hill_decrypt(text,key,self), bg="#b0b0b0", fg="black")
         dec_but.place(x=180,y=200)
 
 

@@ -16,7 +16,6 @@ def msgToMat(string):
         for row in range(2):
             m[row][column]=integers[i]
             i+=1
-    print(m)
     return m
 def keyToMat(string):
     integers = [ord(c.upper())-65 for c in string]
@@ -27,7 +26,6 @@ def keyToMat(string):
         for column in range(2):
             m[row][column]=integers[i]
             i+=1
-    print(m)
     return m
 
 def hill_encrypt():
